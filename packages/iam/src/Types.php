@@ -1,0 +1,146 @@
+<?php
+
+declare(strict_types=1);
+
+namespace NimbusSdk\Iam;
+
+/**
+ * Generated types - do not edit.
+ *
+ * @phpstan-type JsonValue array<string, mixed>
+ * @phpstan-type AccountRegistrationPayload array<string, mixed>
+ * @phpstan-type ApiKeyListResponse array<string, mixed>
+ * @phpstan-type ApiKeyListResponseKeysList array<string, mixed>
+ * @phpstan-type ApiKeyMetadata array<string, mixed>
+ * @phpstan-type ApiKeyResponse array<string, mixed>
+ * @phpstan-type AssumeRoleRequest array<string, mixed>
+ * @phpstan-type AuditEventEnvelope array<string, mixed>
+ * @phpstan-type AuditEventListResponse array<string, mixed>
+ * @phpstan-type AuditEventListResponseEventsList array<string, mixed>
+ * @phpstan-type AuditEventPayload array<string, mixed>
+ * @phpstan-type AuditEventQuery array<string, mixed>
+ * @phpstan-type AuditEventResponse array<string, mixed>
+ * @phpstan-type AuditExportJobResponse array<string, mixed>
+ * @phpstan-type AuditExportJobResponseEventsList array<string, mixed>
+ * @phpstan-type AuditExportQuery array<string, mixed>
+ * @phpstan-type ConsoleSessionContextUpdatePayload array<string, mixed>
+ * @phpstan-type ConsoleSessionStartRequest array<string, mixed>
+ * @phpstan-type ConsoleSessionStartRequestScopeList array<string, mixed>
+ * @phpstan-type CreatePolicy array<string, mixed>
+ * @phpstan-type CreatePolicyStatementsList array<string, mixed>
+ * @phpstan-type GroupDto array<string, mixed>
+ * @phpstan-type GroupListResponse array<string, mixed>
+ * @phpstan-type GroupListResponseGroupsList array<string, mixed>
+ * @phpstan-type GroupMembershipDto array<string, mixed>
+ * @phpstan-type GroupMembershipListResponse array<string, mixed>
+ * @phpstan-type GroupMembershipListResponseMembersList array<string, mixed>
+ * @phpstan-type GroupMembershipPayload array<string, mixed>
+ * @phpstan-type GroupMembershipResponse array<string, mixed>
+ * @phpstan-type GroupPayload array<string, mixed>
+ * @phpstan-type GroupResponse array<string, mixed>
+ * @phpstan-type GroupResponseRoleIdsList array<string, mixed>
+ * @phpstan-type GroupRoleBindingListResponse array<string, mixed>
+ * @phpstan-type GroupRoleBindingListResponseRolesList array<string, mixed>
+ * @phpstan-type GroupRoleBindingPayload array<string, mixed>
+ * @phpstan-type GroupRoleBindingResponse array<string, mixed>
+ * @phpstan-type GroupUpdatePayload array<string, mixed>
+ * @phpstan-type ManagedPolicyAttachmentListResponse array<string, mixed>
+ * @phpstan-type ManagedPolicyAttachmentListResponsePoliciesList array<string, mixed>
+ * @phpstan-type ManagedPolicyAttachmentPayload array<string, mixed>
+ * @phpstan-type ManagedPolicyListResponse array<string, mixed>
+ * @phpstan-type ManagedPolicyListResponsePoliciesList array<string, mixed>
+ * @phpstan-type ManagedPolicyResponse array<string, mixed>
+ * @phpstan-type ManagedPolicyResponseStatementsList array<string, mixed>
+ * @phpstan-type OidcProviderListResponse array<string, mixed>
+ * @phpstan-type OidcProviderListResponseProvidersList array<string, mixed>
+ * @phpstan-type OidcProviderPayload array<string, mixed>
+ * @phpstan-type OidcProviderQuery array<string, mixed>
+ * @phpstan-type OidcProviderResponse array<string, mixed>
+ * @phpstan-type OidcProviderUpdatePayload array<string, mixed>
+ * @phpstan-type Policy array<string, mixed>
+ * @phpstan-type PolicyAttachmentPayload array<string, mixed>
+ * @phpstan-type PolicyListQuery array<string, mixed>
+ * @phpstan-type PolicyListResponse array<string, mixed>
+ * @phpstan-type PolicyListResponsePoliciesList array<string, mixed>
+ * @phpstan-type PolicyResponse array<string, mixed>
+ * @phpstan-type PolicyResponseStatementsList array<string, mixed>
+ * @phpstan-type PolicyVersionListResponse array<string, mixed>
+ * @phpstan-type PolicyVersionListResponseVersionsList array<string, mixed>
+ * @phpstan-type Principal array<string, mixed>
+ * @phpstan-type RevokeTokenRequest array<string, mixed>
+ * @phpstan-type RoleListResponse array<string, mixed>
+ * @phpstan-type RoleListResponseRolesList array<string, mixed>
+ * @phpstan-type RolePayload array<string, mixed>
+ * @phpstan-type RolePayloadAttributesMap array<string, mixed>
+ * @phpstan-type RolePayloadPolicyIdsList array<string, mixed>
+ * @phpstan-type RoleQuery array<string, mixed>
+ * @phpstan-type RoleResponse array<string, mixed>
+ * @phpstan-type RoleResponseAttributesMap array<string, mixed>
+ * @phpstan-type RoleResponsePolicyIdsList array<string, mixed>
+ * @phpstan-type RoleUpdatePayload array<string, mixed>
+ * @phpstan-type RoleUpdatePayloadAttributesMap array<string, mixed>
+ * @phpstan-type RoleUpdatePayloadPolicyIdsList array<string, mixed>
+ * @phpstan-type ServiceAccountListResponse array<string, mixed>
+ * @phpstan-type ServiceAccountListResponseServiceAccountsList array<string, mixed>
+ * @phpstan-type ServiceAccountPayload array<string, mixed>
+ * @phpstan-type ServiceAccountPayloadAttributesMap array<string, mixed>
+ * @phpstan-type ServiceAccountPayloadPolicyIdsList array<string, mixed>
+ * @phpstan-type ServiceAccountQuery array<string, mixed>
+ * @phpstan-type ServiceAccountResponse array<string, mixed>
+ * @phpstan-type ServiceAccountResponseAttributesMap array<string, mixed>
+ * @phpstan-type ServiceAccountResponsePolicyIdsList array<string, mixed>
+ * @phpstan-type ServiceAccountTokenRevokePayload array<string, mixed>
+ * @phpstan-type ServiceAccountUpdatePayload array<string, mixed>
+ * @phpstan-type ServiceAccountUpdatePayloadAttributesMap array<string, mixed>
+ * @phpstan-type ServiceAccountUpdatePayloadPolicyIdsList array<string, mixed>
+ * @phpstan-type SessionListQuery array<string, mixed>
+ * @phpstan-type SessionListResponse array<string, mixed>
+ * @phpstan-type SessionListResponseSessionsList array<string, mixed>
+ * @phpstan-type SessionResponse array<string, mixed>
+ * @phpstan-type SessionResponseScopeList array<string, mixed>
+ * @phpstan-type SessionRevokeAllPayload array<string, mixed>
+ * @phpstan-type SessionRevokePayload array<string, mixed>
+ * @phpstan-type SessionRevokePayloadSessionIdsList array<string, mixed>
+ * @phpstan-type SigningKeyResponse array<string, mixed>
+ * @phpstan-type Statement array<string, mixed>
+ * @phpstan-type StatementActionList array<string, mixed>
+ * @phpstan-type StatementConditionMap array<string, mixed>
+ * @phpstan-type StatementResourceList array<string, mixed>
+ * @phpstan-type TenantListResponse array<string, mixed>
+ * @phpstan-type TenantListResponseTenantsList array<string, mixed>
+ * @phpstan-type TenantPayload array<string, mixed>
+ * @phpstan-type TenantResponse array<string, mixed>
+ * @phpstan-type TenantSecuritySettingsUpdatePayload array<string, mixed>
+ * @phpstan-type TenantSecuritySettingsUpdatePayloadAllowedIdentityProvidersList array<string, mixed>
+ * @phpstan-type TenantSecuritySettingsUpdatePayloadTrustedDomainsList array<string, mixed>
+ * @phpstan-type TenantSuspendPayload array<string, mixed>
+ * @phpstan-type TenantUpdatePayload array<string, mixed>
+ * @phpstan-type TokenRequest array<string, mixed>
+ * @phpstan-type TokenRequestScopeList array<string, mixed>
+ * @phpstan-type TokenResponse array<string, mixed>
+ * @phpstan-type UpdatePolicy array<string, mixed>
+ * @phpstan-type UpdatePolicyStatementsList array<string, mixed>
+ * @phpstan-type UserDto array<string, mixed>
+ * @phpstan-type UserInvitePayload array<string, mixed>
+ * @phpstan-type UserKeyQuery array<string, mixed>
+ * @phpstan-type UserListResponse array<string, mixed>
+ * @phpstan-type UserListResponseUsersList array<string, mixed>
+ * @phpstan-type UserMfaRequirementPayload array<string, mixed>
+ * @phpstan-type UserPayload array<string, mixed>
+ * @phpstan-type UserProvisioningResponse array<string, mixed>
+ * @phpstan-type UserResponse array<string, mixed>
+ * @phpstan-type UserSessionListResponse array<string, mixed>
+ * @phpstan-type UserSessionListResponseSessionsList array<string, mixed>
+ * @phpstan-type UserSessionResponse array<string, mixed>
+ * @phpstan-type UserSessionResponseScopeList array<string, mixed>
+ * @phpstan-type UserUpdatePayload array<string, mixed>
+ * @phpstan-type ValidateAwsSigV4Request array<string, mixed>
+ * @phpstan-type ValidateAwsSigV4RequestHeadersList array<string, mixed>
+ * @phpstan-type ValidateHmacHeader array<string, mixed>
+ * @phpstan-type ValidateHmacRequest array<string, mixed>
+ * @phpstan-type ValidateHmacRequestHeadersList array<string, mixed>
+ * @phpstan-type ValidateJwtRequest array<string, mixed>
+ */
+final class Types
+{
+}

@@ -1,0 +1,16 @@
+{
+  "name": "nimbus-cloud/iam-client",
+  "description": "IamService client generated from Smithy models",
+  "version": "1.0.0",
+  "type": "library",
+  "license": "UNLICENSED",
+  "require": {
+    "php": ">=8.0",
+    "nimbus-cloud/sdk-core": "^0.1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "NimbusSdk\\Iam\\": "src/"
+    }
+  }
+}

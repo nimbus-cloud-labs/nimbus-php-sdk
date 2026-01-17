@@ -1,0 +1,16 @@
+{
+  "name": "nimbus-cloud/dam-client",
+  "description": "DamManagementService client generated from Smithy models",
+  "version": "1.0.0",
+  "type": "library",
+  "license": "UNLICENSED",
+  "require": {
+    "php": ">=8.0",
+    "nimbus-cloud/sdk-core": "^0.1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "NimbusSdk\\DamManagement\\": "src/"
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "nimbus-cloud/sdk-core",
+  "description": "Nimbus PHP SDK core runtime",
+  "version": "0.1.0",
+  "type": "library",
+  "license": "UNLICENSED",
+  "require": {
+    "php": ">=8.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "NimbusSdk\\Core\\": "src/"
+    }
+  }
+}
