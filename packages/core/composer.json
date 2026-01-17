@@ -5,11 +5,24 @@
   "type": "library",
   "license": "UNLICENSED",
   "require": {
+    "ext-curl": "*",
+    "ext-json": "*",
     "php": ">=8.0"
   },
   "autoload": {
     "psr-4": {
       "NimbusSdk\\Core\\": "src/"
-    }
+    },
+    "files": [
+      "src/Auth.php",
+      "src/Client.php",
+      "src/Credentials.php",
+      "src/Errors.php",
+      "src/Idempotency.php",
+      "src/Lro.php",
+      "src/Paginator.php",
+      "src/Runtime.php",
+      "src/Transport.php"
+    ]
   }
 }

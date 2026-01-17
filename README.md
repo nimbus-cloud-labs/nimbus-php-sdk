@@ -42,3 +42,13 @@ $tenants = $client->listTenants();
 ```
 
 Environment variables follow the shared `NIMBUS_*` naming described in `docs/sdk/glossary.md`.
+
+## Conformance checks
+Run the PHP conformance suite locally:
+
+```bash
+php sdk/php/tests/conformance.php
+```
+
+## Packaging
+Publish packages to the internal Composer registry after running the conformance checks and validating generated artifacts.
