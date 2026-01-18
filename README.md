@@ -1,29 +1,14 @@
 # Nimbus PHP SDK
 
-## Overview
-The Nimbus PHP SDK provides generated service clients backed by a shared core runtime. Each service package is generated from Smithy models and depends on `nimbus-cloud/sdk-core`.
+Nimbus PHP SDK provides generated service clients and a shared core runtime. Packages mirror the Rust SDK surface and Smithy models.
 
-## Generate clients
-Run the generator from the repository root:
-
-```bash
-node scripts/sdk/generate_php_sdk.mjs
-```
-
-To check that generated code is up to date:
-
-```bash
-./scripts/sdk/check_php_sdk.sh --check
-```
-
-## Quickstart
-Install the core runtime and the service client (example: IAM):
+## Install
 
 ```bash
 composer require nimbus-cloud/sdk-core nimbus-cloud/iam-client
 ```
 
-Create a client using environment credentials:
+## Quickstart
 
 ```php
 <?php
@@ -31,20 +16,26 @@ Create a client using environment credentials:
 declare(strict_types=1);
 
 use NimbusSdk\Core\NimbusClient;
+use NimbusSdk\Core\StaticTokenProvider;
 use NimbusSdk\Iam\IamServiceClient;
 
 $config = NimbusClient::builder()
     ->endpoint('https://api.nimbus.eu')
+    ->withAuth(new StaticTokenProvider('token'))
     ->build();
 
 $client = IamServiceClient::fromConfig($config);
-$tenants = $client->listTenants();
+$result = $client->emitToken([
+    'urn' => 'urn:nimbus:iam::123',
+    'typ' => 'access'
+]);
+
+var_dump($result['token']);
 ```
 
-Environment variables follow the shared `NIMBUS_*` naming described in `docs/sdk/glossary.md`.
-
-## Static access keys
-Provide access key credentials directly when you do not want environment resolution:
+## Authentication
+- **Environment provider (default):** Reads `NIMBUS_*` variables from the environment.
+- **Static access keys:** Provide access/secret keys directly when you do not want environment resolution.
 
 ```php
 <?php
@@ -53,7 +44,6 @@ declare(strict_types=1);
 
 use NimbusSdk\Core\NimbusClient;
 use NimbusSdk\Core\StaticKeyCredentialProvider;
-use NimbusSdk\Iam\IamServiceClient;
 
 $config = NimbusClient::builder()
     ->endpoint('https://api.nimbus.eu')
@@ -62,16 +52,11 @@ $config = NimbusClient::builder()
         'secretKey' => 'Zm9vYmFyLXNlY3JldC1leGFtcGxlLXN0cmluZw=='
     ]))
     ->build();
-
-$client = IamServiceClient::fromConfig($config);
 ```
 
-## Conformance checks
-Run the PHP conformance suite locally:
+## Pagination and LRO
+Paginator helpers return iterators, and long-running operations expose `*AndWait` helpers.
 
-```bash
-php sdk/php/tests/conformance.php
-```
-
-## Packaging
-Publish packages to the internal Composer registry after running the conformance checks and validating generated artifacts.
+## Development
+- Regenerate clients with the bundled generator script.
+- Run conformance checks with `php tests/conformance.php`.
