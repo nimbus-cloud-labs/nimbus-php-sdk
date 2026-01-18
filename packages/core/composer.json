@@ -3,7 +3,7 @@
   "description": "Nimbus PHP SDK core runtime",
   "version": "0.1.0",
   "type": "library",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "require": {
     "ext-curl": "*",
     "ext-json": "*",

@@ -3,7 +3,7 @@
   "description": "IamService client generated from Smithy models",
   "version": "1.0.0",
   "type": "library",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "require": {
     "php": ">=8.0",
     "nimbus-cloud/sdk-core": "^0.1.0"

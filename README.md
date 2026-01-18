@@ -20,7 +20,7 @@ use NimbusSdk\Core\StaticTokenProvider;
 use NimbusSdk\Iam\IamServiceClient;
 
 $config = NimbusClient::builder()
-    ->endpoint('https://api.nimbus.eu')
+    ->endpoint('https://api.nimbuscloudplatform.com')
     ->withAuth(new StaticTokenProvider('token'))
     ->build();
 
@@ -46,7 +46,7 @@ use NimbusSdk\Core\NimbusClient;
 use NimbusSdk\Core\StaticKeyCredentialProvider;
 
 $config = NimbusClient::builder()
-    ->endpoint('https://api.nimbus.eu')
+    ->endpoint('https://api.nimbuscloudplatform.com')
     ->withAuth(new StaticKeyCredentialProvider([
         'accessKey' => 'ZZYX1EXAMPLEKEY00001',
         'secretKey' => 'Zm9vYmFyLXNlY3JldC1leGFtcGxlLXN0cmluZw=='
