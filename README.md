@@ -43,6 +43,29 @@ $tenants = $client->listTenants();
 
 Environment variables follow the shared `NIMBUS_*` naming described in `docs/sdk/glossary.md`.
 
+## Static access keys
+Provide access key credentials directly when you do not want environment resolution:
+
+```php
+<?php
+
+declare(strict_types=1);
+
+use NimbusSdk\Core\NimbusClient;
+use NimbusSdk\Core\StaticKeyCredentialProvider;
+use NimbusSdk\Iam\IamServiceClient;
+
+$config = NimbusClient::builder()
+    ->endpoint('https://api.nimbus.eu')
+    ->withAuth(new StaticKeyCredentialProvider([
+        'accessKey' => 'ZZYX1EXAMPLEKEY00001',
+        'secretKey' => 'Zm9vYmFyLXNlY3JldC1leGFtcGxlLXN0cmluZw=='
+    ]))
+    ->build();
+
+$client = IamServiceClient::fromConfig($config);
+```
+
 ## Conformance checks
 Run the PHP conformance suite locally:
 

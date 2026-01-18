@@ -137,3 +137,84 @@ final class EnvironmentCredentialProvider implements AuthTokenProvider
         }
     }
 }
+
+final class StaticKeyCredentials
+{
+    private const ACCESS_KEY_REGEX = '/^[A-Z0-9]{20}$/';
+    private const SECRET_KEY_REGEX = '/^[A-Za-z0-9_-]{44}$/';
+
+    public function __construct(
+        public readonly string $accessKey,
+        public readonly string $secretKey,
+        public readonly ?string $sessionToken = null
+    ) {
+        self::validateAccessKey($this->accessKey);
+        self::validateSecretKey($this->secretKey);
+        if ($this->sessionToken !== null) {
+            self::validateSessionToken($this->sessionToken);
+        }
+    }
+
+    /** @param array{accessKey: string, secretKey: string, sessionToken?: string} $config */
+    public static function fromArray(array $config): self
+    {
+        return new self(
+            (string) ($config['accessKey'] ?? ''),
+            (string) ($config['secretKey'] ?? ''),
+            isset($config['sessionToken']) ? (string) $config['sessionToken'] : null
+        );
+    }
+
+    private static function validateAccessKey(string $value): void
+    {
+        if (!preg_match(self::ACCESS_KEY_REGEX, $value)) {
+            throw new AuthError('Access key must be 20 uppercase alphanumeric characters.');
+        }
+    }
+
+    private static function validateSecretKey(string $value): void
+    {
+        if (!preg_match(self::SECRET_KEY_REGEX, $value)) {
+            throw new AuthError('Secret key must be a 44-character URL-safe Base64 string without padding.');
+        }
+    }
+
+    private static function validateSessionToken(string $value): void
+    {
+        if (strlen($value) > 512) {
+            throw new AuthError('Session token exceeds 512 characters.');
+        }
+        try {
+            Runtime::decodeBase64Json($value);
+        } catch (SdkError $error) {
+            throw new AuthError(sprintf('Session token must be Base64-encoded JSON (%s).', $error->getMessage()));
+        }
+    }
+}
+
+final class StaticKeyCredentialProvider implements AuthTokenProvider
+{
+    private StaticKeyCredentials $credentials;
+
+    public function __construct(StaticKeyCredentials|array $credentials)
+    {
+        $this->credentials = $credentials instanceof StaticKeyCredentials
+            ? $credentials
+            : StaticKeyCredentials::fromArray($credentials);
+    }
+
+    /** @param array{accessKey: string, secretKey: string, sessionToken?: string} $config */
+    public static function fromArray(array $config): self
+    {
+        return new self(StaticKeyCredentials::fromArray($config));
+    }
+
+    public function authorizationHeader(): string
+    {
+        if ($this->credentials->sessionToken !== null && $this->credentials->sessionToken !== '') {
+            return sprintf('Bearer %s', $this->credentials->sessionToken);
+        }
+        $raw = sprintf('%s:%s', $this->credentials->accessKey, $this->credentials->secretKey);
+        return sprintf('Basic %s', Runtime::encodeBase64($raw));
+    }
+}
